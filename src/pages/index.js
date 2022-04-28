@@ -14,6 +14,7 @@ export default function Battle() {
             this.position = position;
             this.velocity = velocity;
             this.height = 150;
+            this.lastKey = "";
         }
 
         draw() {
@@ -63,6 +64,12 @@ export default function Battle() {
         },
         d: {
             pressed: false
+        },
+        ArrowLeft: {
+            pressed: false
+        },
+        ArrowRight: {
+            pressed: false
         }
     }
 
@@ -81,6 +88,10 @@ export default function Battle() {
             player.velocity.x = -1;
         } else if(keys.d.pressed && lastKey === 'd') {
             player.velocity.x = 1;
+        } else if(keys.ArrowLeft.pressed && enemy.lastKey === 'ArrowLeft') {
+            enemy.velocity.x = -1;
+        } else if(keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight') {
+            enemy.velocity.x = 1;
         }
     }
 
@@ -96,6 +107,16 @@ export default function Battle() {
             break;
             case 'a': 
             keys.a.pressed = false;
+            break;
+
+            case 'ArrowUp': 
+            enemy.velocity.y = 0
+            break;
+            case 'ArrowRight': 
+            keys.ArrowRight.pressed = false;
+            break;
+            case 'ArrowLeft': 
+            keys.ArrowLeft.pressed = false;
             break;
             default: 
             break;
@@ -115,6 +136,18 @@ export default function Battle() {
             keys.a.pressed = true;
             lastKey = 'a';
             break;
+
+            case 'ArrowUp': 
+            enemy.velocity.y = -5
+            break;
+            case 'ArrowRight': 
+            keys.ArrowRight.pressed = true;
+            enemy.lastKey = 'ArrowRight';
+            break;
+            case 'ArrowLeft': 
+            keys.ArrowLeft.pressed = true;
+            enemy.lastKey = 'ArrowLeft';
+            break;
             default: 
             break;
         }
@@ -125,7 +158,6 @@ export default function Battle() {
     return (
         <>
             <canvas></canvas>
-            <button>Start!</button>
         </>
     )
 }
