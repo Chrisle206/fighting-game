@@ -1,6 +1,6 @@
-#fighting-game
+# <fighting-game>
 
-##Description
+## Description
 
 Fun fighting game created following Christopher Lis' youtube video linked below! He goes over a ton of coding techniques. The basic fighting mechanics came first, followed by adding the sprites, and animation frames.
 
